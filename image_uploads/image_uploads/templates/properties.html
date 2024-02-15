@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Properties</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .nav-link {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container mt-5">
+    <a href="/view/" class="btn btn-primary">Back</a>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <!-- Display the image at the top -->
+        <img src="{{ image_data.image.url }}" class="img-fluid mb-3" alt="Image">
+        <!-- Display the name of the image -->
+        <h4 class="mb-3">{{ image_data.name }}</h4>
+        <!-- Display the properties of the image -->
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link " href="/properties/{{image_data.id}}#content">Properties</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="/resize/{{image_data.id}}#content">resize</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="/gray/{{image_data.id}}">Gray Image</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="/test/{{image_data.id}}">change</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="/delete/{{image_data.id}}">delete</a>
+          </li>
+        </ul>
+        <div id="content">
+          {% block content %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS (optional, if you need it) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

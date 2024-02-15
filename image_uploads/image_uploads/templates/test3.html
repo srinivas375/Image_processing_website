@@ -1,0 +1,31 @@
+{% extends "properties.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form action="/resize/{{id}}#new_image" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="width">Width of Image:</label>
+                <input type="number" class="form-control form-control-sm" id="width" name="width" value="{{request.POST.width}}" required>
+            </div>
+            <div class="form-group">
+                <label for="height">Height of Image:</label>
+                <input type="number" class="form-control form-control-sm" id="height" name="height" value="{{request.POST.height}}" required>
+            </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <div class="row mt-3">
+                <div class="col-md-6 offset-md-3" id="new_image">
+                    {% if image %}
+                        <img src="data:image/jpeg;base64,{{ image }}" class="card-img-center" alt="{{ image.name }}">
+                        <a href="/download/{{id}}" class="btn btn-primary">Download</a>
+                    {% endif %}
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}
+

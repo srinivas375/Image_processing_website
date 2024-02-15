@@ -1,0 +1,11 @@
+{% extends "properties.html" %}
+{% block content %}
+{% if  properties_data%}
+<ul class="list-group">
+    <li class="list-group-item">Number of rows : {{ properties_data.rows }}</li>
+    <li class="list-group-item">Number of columns : {{ properties_data.columns }}</li>
+    <li class="list-group-item">Number of pixels : {{ properties_data.pixels }}</li>
+    <li class="list-group-item">Image size is : ({{ properties_data.rows }}, {{properties_data.columns}})</li>
+</ul>
+{% endif %}
+{% endblock  %}

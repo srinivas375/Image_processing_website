@@ -1,0 +1,13 @@
+{% extends "properties.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+                    {% if image %}
+                        <img src="data:image/jpeg;base64,{{ image }}" class="card-img-center" alt="{{ image.name }}">
+                    {% endif %}
+    </div>
+    <div class="row">
+    </div>
+</div>
+{% endblock  %}
+

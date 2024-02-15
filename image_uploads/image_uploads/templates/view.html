@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Images</title>
+    <style>
+        .card-img-top {
+            height: 200px;
+            width: 100px;
+            object-fit: cover;
+        }
+    </style>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}} alert-dismissible">
+            <strong>Message: </strong> {{message}}
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        </div>
+        {% endfor %}
+        <a href="/home/" class="btn btn-primary">Back</a>
+        <h3 class="mb-4">Click on any image to see its properties</h3>
+        <div class="row">
+            {% for image in images %}
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <a href="/display/{{image.id}}"><img src="{{ image.image.url }}" class="card-img-top"
+                            alt="{{ image.name }}"></a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ image.name }}</h5>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (optional, if you need it) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

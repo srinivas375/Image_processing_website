@@ -1,0 +1,56 @@
+{% extends "properties.html" %}
+{% block content %}
+<div class="container">
+  <form action="/test/{{id}}#changed_image" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="trackbar1">Choose contrast:</label>
+      <div class="row">
+        <div class="col-md-10">
+          <input type="range" class="custom-range" id="trackbar1" name="contrast" min="0" max="30"
+            value="{{request.POST.contrast}}" />
+        </div>
+        <div class="col-md-2">
+          <span id='contrastvalue'>{{request.POST.contrast}}</span>
+        </div>
+      </div>
+      <label for="trackbar2">Choose brightness:</label>
+      <div class="row">
+        <div class="col-md-10">
+          <input type="range" class="custom-range" id="trackbar2" name="brightness" min="0" max="200"
+            value="{{request.POST.brightness}}" />
+        </div>
+        <div class="col-md-2">
+          <span id="brightnessvalue">{{request.POST.brightness}}</span><br>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+  <div class="row mt-3">
+    <div class="col-md-6 offset-md-3" id="new_image">
+      {% if image %}
+      <img id="changed_image" src="data:image/jpeg;base64,{{ image }}" class="card-img-center" alt="{{ image.name }}" />
+      {% comment %} <a href="/download/{{id}}" class="btn btn-primary">Download</a> {% endcomment %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  function updateparams(trackid, displayid) {
+    var trackbar = document.getElementById(trackid);
+    var display = document.getElementById(displayid);
+    display.innerText = trackbar.value;
+
+  }
+  document.getElementById("trackbar1").addEventListener("input", function () {
+    updateparams("trackbar1", "contrastvalue");
+  });
+  document.getElementById("trackbar2").addEventListener("input", function () {
+    updateparams("trackbar2", "brightnessvalue");
+  });
+  updateparams("trackbar1","contrastvalue");
+  updateparams("trackbar2","brightnessvalue");
+</script>
+{% endblock %}
